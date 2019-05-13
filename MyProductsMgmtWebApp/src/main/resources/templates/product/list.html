@@ -1,0 +1,40 @@
+<!DOCTYPE html >
+<html layout:decorator="shared/homelayout"
+	  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<body>
+	<th:block layout:fragment="header">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/studentlist.css}" />
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<h2>Student List</h2> <br/>
+		<a href="/product">Create a product</a>
+		<a href="/" id="linkBackHome" >Back to home</a><br/><br/>
+		<table class="table table-striped">
+			<thead>
+				<th>Product Number</th>
+				<th>Product Name</th>
+				<th>Unit Price</th>
+				<th>Manuf.Date</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.productNumber}"></td>
+					<td th:text="${product.productName}"></td>
+					<td th:text="${product.unitPrice}"></td>
+					<td th:text="${product.dateMfd}"></td>
+					<td>
+						<a th:href="@{'/product/' + ${product.pid}}">Edit</a>&nbsp;
+						<a th:href="@{'/product/delete/' + ${product.pid}}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+	
+	<th:block layout:fragment="footer">
+	</th:block>
+	
+</body>
+</html>
